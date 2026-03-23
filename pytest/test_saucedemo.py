@@ -1,5 +1,5 @@
 import pytest
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, expect
 
 @pytest.fixture(scope="session")
 def browser():
@@ -20,6 +20,8 @@ BASE_URL = "https://www.saucedemo.com/"
 def test_title(page):
     page.goto(BASE_URL)
     assert page.title() == "Swag Labs"
+    print(page.locator('[class="login_logo"]').inner_text())
+    expect(page.locator(".login_logo")).to_be_visible()
 
 def test_login_correct_credentials(page):
     page.goto(f"{BASE_URL}")

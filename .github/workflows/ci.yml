@@ -27,9 +27,3 @@ jobs:
       - name: Run test
         run: |
           pytest -v
-
-      - name: Test Summary
-        uses: test-summary/action@v2
-        with:
-          paths: "target/surefire-reports/*.xml"
-        if: always()
